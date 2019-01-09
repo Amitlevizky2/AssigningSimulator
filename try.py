@@ -1,4 +1,4 @@
-fileHandle = open('/users/studs/bsc/2019/levamit/PycharmProjects/untitled1/kok.txt', 'r')
+fileHandle = open('/users/studs/bsc/2019/levamit/PycharmProjects/untitled1/short_config.txt', 'r')
 
 for line in fileHandle:
     fields = line.split(',')

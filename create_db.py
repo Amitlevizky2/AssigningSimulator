@@ -5,8 +5,10 @@ import sys
 repo.create_tables()
 fileHandle = open(sys.argv[1], 'r')
 for line in fileHandle:
-    fields = line.split(', ')
-    fields[fields.__len__() - 1] = fields[fields.__len__() - 1].replace('\n', '')
+    fields = line.split(',')
+    fields = [x.strip() for x in fields]
+    #fields = [x.rstrip() for x in fields]
+    #fields[fields.__len__() - 1] = fields[fields.__len__() - 1].replace('\n', '')
     if fields[0].__eq__('S'):
         s = persistence.Student(fields[1], int(fields[2]))
         repo.students.insert(s)

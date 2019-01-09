@@ -28,10 +28,10 @@ while os.path.isfile('schedule.db') and all_courses.__len__() != 0:
 
 
         elif classroom.current_course_id != 0 and classroom.current_course_time_left != 0:
-            if classroom.current_course_time_left != 1:
+            if classroom.current_course_time_left > 1:
                 print("(" + str(iteration) + ") " + classroom.location + ": " + "occupied by " + repo.courses.get_course_name(classroom.current_course_id))
             for course in all_courses:
-                if course.class_id == classroom.id:
+                if course.id == classroom.current_course_id:
                     classroom.current_course_time_left -= 1
                     repo.classrooms.reduce_time_left(classroom.id)
 
@@ -43,6 +43,8 @@ while os.path.isfile('schedule.db') and all_courses.__len__() != 0:
             for course in all_courses:
                 if course.class_id == classroom.id:
                     all_courses.remove(course)
-                    lolo()
+                    classroom.current_course_id=0
+                    classroom.current_course_time_left = 0
+            lolo()
     repo.print_all()
     iteration+=1
